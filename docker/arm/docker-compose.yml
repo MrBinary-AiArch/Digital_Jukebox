@@ -1,0 +1,30 @@
+services:
+   arm:
+     image: automaticrippingmachine/automatic-ripping-machine:latest
+     container_name: arm
+     restart: unless-stopped
+     network_mode: host
+     environment:
+       - UID=1000
+       - GID=1000
+       - WEBSERVER_IP=0.0.0.0
+       - TZ=America/Chicago
+     devices:
+       - "/dev/sr0:/dev/sr0"
+       - "/dev/sr1:/dev/sr1"
+       - "/dev/sg1:/dev/sg1"
+       - "/dev/sg4:/dev/sg4"
+     volumes:
+       - "./config:/etc/arm/config"
+       - "./config/runui.py:/opt/arm/arm/runui.py"
+       - "/etc/localtime:/etc/localtime:ro"
+       - "/home/arm:/home/arm"
+       - "/mnt/storage/music:/home/arm/music"
+       - "/mnt/storage/media:/home/arm/media"
+       - "/mnt/transcode:/home/arm/media/transcode"
+     privileged: true
+     healthcheck:
+       test: ["CMD-SHELL", "curl --fail \"http://localhost:8080\" || exit 1"]
+       interval: 30s
+       timeout: 10s
+       retries: 5
