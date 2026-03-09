@@ -1,0 +1,30 @@
+# Sensitive data
+.env
+docker-compose.override.yml
+*.key
+*.pem
+
+# Logs and reports
+*.log
+/reports/
+/logs/
+
+# Media files (Large/Unsorted)
+*.flac
+*.mp3
+*.wav
+*.m4a
+*.iso
+*.mkv
+
+# OS/IDE specific
+.DS_Store
+.vscode/
+.idea/
+.gemini/
+
+# Node/Python
+node_modules/
+__pycache__/
+*.pyc
+venv/
