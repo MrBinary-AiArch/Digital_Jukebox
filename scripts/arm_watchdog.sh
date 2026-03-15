@@ -1,7 +1,7 @@
 #!/bin/bash
 # ARM Watchdog Script (Enhanced with Abandon API)
 # Detects and resets stuck rips (Logs silent for > 2 hours while disc is present)
-# Add to root crontab: */30 * * * * /home/YOUR_USERNAME/scripts/arm_watchdog.sh >> /home/YOUR_USERNAME/reports/arm_watchdog.log 2>&1
+# Add to root crontab: */30 * * * * /home/mrbinary/scripts/arm_watchdog.sh >> /home/mrbinary/reports/arm_watchdog.log 2>&1
 
 # Configuration
 LOG_DIR="/home/arm/logs"
@@ -29,26 +29,39 @@ for DRIVE_DEV in "${DRIVES[@]}"; do
                 echo "  - Idle Time: $DIFF seconds"
                 
                 # Attempt to find the Job ID via the ARM API
-                # We check failed/active jobs and filter by device path
-                JOB_ID=$(curl -s "$ARM_API?mode=getfailed" | jq -r ".results[] | select(.devpath == \"$DRIVE_DEV\") | .job_id" | head -n 1)
+                # We check active jobs first, as these are the ones that can be "stuck"
+                JOB_ID=$(curl -s "$ARM_API?mode=getactive" | jq -r ".results[]? | select(.devpath == \"$DRIVE_DEV\") | .job_id" | head -n 1)
                 
                 if [ -n "$JOB_ID" ] && [ "$JOB_ID" != "null" ]; then
-                    echo "  - Action: Abandoning Job $JOB_ID via ARM API..."
+                    echo "  - Action: Abandoning Active Job $JOB_ID via ARM API..."
                     curl -s "$ARM_API?mode=abandon&job=$JOB_ID" > /dev/null
                 else
-                    echo "  - Warning: Could not find Job ID for $DRIVE_DEV via API. Falling back to container restart."
+                    # If no active job, it's stuck at a lower level (udev/startup)
+                    # Safety Check: Do not restart container if ANY drive has an active rip (using logic from check_rips.sh)
+                    OTHER_ACTIVE=$(docker exec arm ps aux | grep -E "abcde|cdparanoia|makemkvcon|HandBrakeCLI" | grep -v grep)
+                    
+                    if [ -n "$OTHER_ACTIVE" ]; then
+                        echo "  - Warning: Stuck state detected on $DRIVE_DEV, but OTHER drives are currently ripping."
+                        echo "  - Action: Skipping container restart to protect active jobs. Will retry next cycle."
+                        continue 
+                    fi
+
+                    echo "  - Warning: No active job ID found for $DRIVE_DEV and no other ripping activity detected."
+                    echo "  - Action: Restarting ARM container to clear stuck hardware hook..."
                     docker restart arm
+                    # Wait for container to fully come back before ejecting
+                    sleep 20
                 fi
                 
-                # Wait for system to settle before ejecting
-                sleep 10
+                # Action: Ejecting the drive to stop the recurring detection
                 echo "  - Action: Ejecting $DRIVE_DEV..."
-                eject "$DRIVE_DEV"
+                eject "$DRIVE_DEV" || sudo eject "$DRIVE_DEV"
                 
                 echo "[$(date)] Reset Complete for $DRIVE_DEV."
                 # Once we reset arm, we break out for this cycle
                 break 
             else
+                # Optional: If idle > 30 mins but < 2 hours, we could log a warning but here we stay silent
                 echo "[$(date)] Disc present in $DRIVE_DEV, but log is active (Idle: $DIFF seconds). No action."
             fi
         else
