@@ -1,0 +1,10 @@
+services:
+  gcalsync:
+    build: .
+    container_name: gcalsync
+    volumes:
+      - ./config:/root/.config/gcalsync
+    network_mode: host
+    # This container is designed to be run as a one-off command:
+    # docker compose run --rm gcalsync add
+    # docker compose run --rm gcalsync sync
