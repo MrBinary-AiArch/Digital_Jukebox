@@ -1,0 +1,98 @@
+[Tue Mar 17 04:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 31546 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr0: Device or resource busy
+[Tue Mar 17 04:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 246195 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr1: Device or resource busy
+eject: cannot open /dev/sr1: Device or resource busy
+[Tue Mar 17 05:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 33346 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 05:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 247995 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 05:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 35146 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 05:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 249795 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 06:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 36946 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr0: Device or resource busy
+[Tue Mar 17 06:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 251595 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr1: Device or resource busy
+eject: cannot open /dev/sr1: Device or resource busy
+[Tue Mar 17 06:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 38746 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr0: Device or resource busy
+[Tue Mar 17 06:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 253395 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr1: Device or resource busy
+eject: cannot open /dev/sr1: Device or resource busy
+[Tue Mar 17 07:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr0!
+  - Log: /home/arm/logs/Ella-Fitzgerald-The-Complete-Ella-and-Louis-on-Verve_177370762735.log
+  - Idle Time: 40546 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr0: Device or resource busy
+[Tue Mar 17 07:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 255195 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+eject: cannot open /dev/sr1: Device or resource busy
+eject: cannot open /dev/sr1: Device or resource busy
+[Tue Mar 17 07:30:01 CDT 2026] Disc present in /dev/sr0, but log is active (Idle: 36 seconds). No action.
+[Tue Mar 17 07:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 256995 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 08:00:01 CDT 2026] Disc present in /dev/sr0, but log is active (Idle: 1395 seconds). No action.
+[Tue Mar 17 08:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 258795 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 08:30:01 CDT 2026] Disc present in /dev/sr0, but log is active (Idle: 1207 seconds). No action.
+[Tue Mar 17 08:30:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 260595 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 09:00:01 CDT 2026] Disc present in /dev/sr0, but log is active (Idle: 3007 seconds). No action.
+[Tue Mar 17 09:00:01 CDT 2026] STUCK RIP DETECTED on /dev/sr1!
+  - Log: /home/arm/logs/Glenn-Miller-The-Secret-Broadcasts_177349210890.log
+  - Idle Time: 262395 seconds
+  - Note: Job for this log is already marked as 'success' in the database.
+  - Action: Attempting Eject ONLY. Skipping container restart to avoid loop.
+[Tue Mar 17 09:30:01 CDT 2026] Disc present in /dev/sr0, but log is active (Idle: 26 seconds). No action.
+[Tue Mar 17 09:30:01 CDT 2026] Disc present in /dev/sr1, but log is active (Idle: 8 seconds). No action.

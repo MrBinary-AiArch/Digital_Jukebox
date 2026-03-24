@@ -1,92 +1,89 @@
 #!/bin/bash
 
-# Digital Jukebox Health Check Script
-# Version 1.2 (Power Stability Update)
+# Digital <YOUR_HOSTNAME> Health Check Script
+# Version 1.3 (Centralized Logging Update)
 
-# Colors
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+LOG_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/health_check.log"
 
-echo -e "${GREEN}==========================================${NC}"
-echo -e "${GREEN}   Digital Jukebox System Health Check    ${NC}"
-echo -e "${GREEN}==========================================${NC}"
+{
+echo "=========================================="
+echo "   Digital <YOUR_HOSTNAME> System Health Check    "
+echo "=========================================="
 date
 echo ""
 
 # 1. System Information
-echo -e "${YELLOW}[+] System Information${NC}"
+echo "[+] System Information"
 echo "Hostname: $(hostname)"
 echo "Kernel: $(uname -r)"
 uptime
 echo ""
 
 # 2. Power & Shutdown History
-echo -e "${YELLOW}[+] Power & Shutdown History (Last 5)${NC}"
+echo "[+] Power & Shutdown History (Last 5)"
 last reboot | head -n 5
-echo -e "
-${YELLOW}Checking for unexpected shutdowns in logs...${NC}"
+echo ""
+echo "Checking for unexpected shutdowns in logs..."
 journalctl -b -1 -n 20 | grep -iE "power|voltage|shutdown|halt" || echo "No obvious power-loss errors in previous boot logs."
 echo ""
 
 # 3. Memory Usage
-echo -e "${YELLOW}[+] Memory Usage${NC}"
+echo "[+] Memory Usage"
 free -h
 echo ""
 
 # 4. Storage Status & SMART
-echo -e "${YELLOW}[+] Storage Status & SMART Health${NC}"
-# Check Root FS
+echo "[+] Storage Status & SMART Health"
 ROOT_USAGE=$(df -h / | awk 'NR==2 {print $5}')
 echo "Root Filesystem Usage: $ROOT_USAGE"
 
-# Check Main Storage Mount (/mnt/storage)
 if mountpoint -q /mnt/storage; then
-    echo -e "${GREEN}SUCCESS: /mnt/storage is mounted.${NC}"
+    echo "SUCCESS: /mnt/storage is mounted."
     df -h /mnt/storage
-    
-    echo -e "
---- SMART Health Status (/dev/sda) ---"
+    echo ""
+    echo "--- SMART Health Status (/dev/sda) ---"
     if command -v smartctl &> /dev/null; then
-        sudo smartctl -H /dev/sda | grep -E "test result|overall-health" || echo -e "${RED}SMART status unavailable. Check drive type.${NC}"
-    else
-        echo -e "${RED}smartmontools not installed. Run: sudo apt install smartmontools${NC}"
+        sudo smartctl -H /dev/sda | grep -E "test result|overall-health" || echo "SMART status unavailable."
     fi
 else
-    echo -e "${RED}CRITICAL: /mnt/storage is NOT mounted!${NC}"
-    echo "Checking physical block devices..."
-    lsblk | grep -E "sd|nvme"
+    echo "CRITICAL: /mnt/storage is NOT mounted!"
 fi
 echo ""
 
 # 5. Optical Drive Check
-echo -e "${YELLOW}[+] Optical Drive Check${NC}"
-if [ -e /dev/sr0 ]; then
-    echo -e "${GREEN}Optical Drive (/dev/sr0) detected.${NC}"
-else
-    echo -e "${RED}ERROR: Optical Drive (/dev/sr0) NOT detected.${NC}"
-fi
+echo "[+] Optical Drive Check"
+for DRIVE in /dev/sr0 /dev/sr1; do
+    if [ -e "$DRIVE" ]; then
+        echo "Optical Drive ($DRIVE) detected."
+    else
+        echo "ERROR: Optical Drive ($DRIVE) NOT detected."
+    fi
+done
 echo ""
 
 # 6. Docker Services
-echo -e "${YELLOW}[+] Docker Services${NC}"
+echo "[+] Docker Services"
 if command -v docker &> /dev/null; then
-    docker ps -a --format "table {{.Names}}	{{.Status}}	{{.State}}"
-else
-    echo -e "${RED}Docker is not installed or not in PATH.${NC}"
+    docker ps -a --format "table {{.Names}}\t{{.Status}}\t{{.State}}"
 fi
 echo ""
 
 # 7. Network Connectivity
-echo -e "${YELLOW}[+] Network Connectivity${NC}"
+echo "[+] Network Connectivity"
 if ping -c 3 8.8.8.8 &> /dev/null; then
-    echo -e "${GREEN}Internet connectivity confirmed.${NC}"
+    echo "Internet connectivity confirmed."
 else
-    echo -e "${RED}ERROR: No Internet connectivity.${NC}"
+    echo "ERROR: No Internet connectivity."
 fi
 
 echo ""
-echo -e "${GREEN}==========================================${NC}"
-echo -e "${GREEN}           Health Check Complete          ${NC}"
-echo -e "${GREEN}==========================================${NC}"
+echo "=========================================="
+echo "           Health Check Complete          "
+echo "=========================================="
+echo -e "\n"
+} >> "$LOG_FILE" 2>&1
+
+# Also echo to console if not running in background
+if [ -t 1 ]; then
+    tail -n 60 "$LOG_FILE"
+fi
