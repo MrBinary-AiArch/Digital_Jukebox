@@ -2,7 +2,7 @@
 # Wrapper for the ARM timeout monitor
 # Centralized logging version
 
-LOG_FILE="/home/mrbinary/projects/Digital_Jukebox/logs/arm_monitor.log"
+LOG_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/arm_monitor.log"
 
 {
     echo "--- Monitor Run: $(date) ---"

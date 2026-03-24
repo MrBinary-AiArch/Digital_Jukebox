@@ -1,8 +1,8 @@
 #!/bin/bash
 # Hardware and Firmware Inspection Script
-# Saves output to /home/mrbinary/reports/hardware_inspection_report.txt
+# Saves output to /home/<YOUR_USER>/reports/hardware_inspection_report.txt
 
-REPORT_FILE="/home/mrbinary/projects/Digital_Jukebox/logs/hardware_inspection_report.txt"
+REPORT_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/hardware_inspection_report.txt"
 
 {
     echo "======================================================"

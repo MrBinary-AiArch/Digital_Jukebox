@@ -1,17 +1,17 @@
 #!/bin/bash
-# Digital Jukebox Progress Report
+# Digital <YOUR_HOSTNAME> Progress Report
 # Generates a summary of system health, storage, and library statistics.
 
 # Configuration
-PLEX_DB="/home/mrbinary/docker/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db"
+PLEX_DB="/home/<YOUR_USER>/docker/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.library.db"
 STORAGE_DIR="/mnt/storage"
 MUSIC_LIB="/mnt/storage/music/library"
-LOG_FILE="/home/mrbinary/projects/Digital_Jukebox/logs/progress_report.log"
+LOG_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/progress_report.log"
 export TZ="America/Chicago"
 
 {
 echo "--------------------------------------------------"
-echo "🎵 JUKEBOX PROGRESS REPORT: $(date '+%Y-%m-%d %H:%M')"
+echo "🎵 <YOUR_HOSTNAME> PROGRESS REPORT: $(date '+%Y-%m-%d %H:%M')"
 echo "--------------------------------------------------"
 echo ""
 

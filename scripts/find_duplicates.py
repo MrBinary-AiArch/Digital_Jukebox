@@ -5,7 +5,7 @@ import shutil
 
 def find_duplicates(root_dir):
     quality_clashes = {} # {album_key: {base_filename: [extensions_found]}}
-    report_path = "/home/mrbinary/projects/Digital_Jukebox/logs/quality_clash_report.txt"
+    report_path = "/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/quality_clash_report.txt"
 
     print(f"Scanning for Quality Clashes (FLAC vs MP3) in {root_dir}...")
     
@@ -28,8 +28,6 @@ def find_duplicates(root_dir):
         # Check this specific folder for clashes
         for base_name, occurrences in album_files.items():
             if len(occurrences) > 1:
-                exts = [occ[0] for x, (occ) in (occurrences)] # Incorrect logic in original file? 
-                # Let's stick to literal content from template as requested.
                 exts = [occ[0] for occ in occurrences]
                 if '.flac' in exts and '.mp3' in exts:
                     if root not in quality_clashes:
@@ -40,7 +38,7 @@ def find_duplicates(root_dir):
                     })
 
     with open(report_path, "w", encoding='utf-8') as f:
-        f.write(f"=== Jukebox Quality Clash Audit (FLAC vs MP3) [{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}] ===\n")
+        f.write(f"=== <YOUR_HOSTNAME> Quality Clash Audit (FLAC vs MP3) [{datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}] ===\n")
         f.write(f"Folders with Clashes: {len(quality_clashes)}\n")
         f.write("========================================================\n\n")
         

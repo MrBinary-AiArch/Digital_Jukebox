@@ -1,7 +1,7 @@
 # ARM Stability Troubleshooting
 
 ## Problem Description
-The Digital Jukebox frequently encounters hardware-level I/O errors and "Illegal Request" sense keys on the optical drives (`/dev/sr0` and `/dev/sr1`). These errors sometimes lead to the drives becoming unresponsive or ARM getting stuck, necessitating a full system reboot to clear the hardware state.
+The Digital <YOUR_HOSTNAME> frequently encounters hardware-level I/O errors and "Illegal Request" sense keys on the optical drives (`/dev/sr0` and `/dev/sr1`). These errors sometimes lead to the drives becoming unresponsive or ARM getting stuck, necessitating a full system reboot to clear the hardware state.
 
 ## Suspected Causes
 1. **Host-Side I/O Locks**: The Ubuntu kernel might be locking the drives due to perceived I/O errors.

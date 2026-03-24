@@ -1,7 +1,7 @@
 #!/bin/bash
 # ARM Watchdog Script (Enhanced with Abandon API)
 # Detects and resets stuck rips (Logs silent for > 2 hours while disc is present)
-# Add to root crontab: */30 * * * * /home/mrbinary/scripts/arm_watchdog.sh >> /home/mrbinary/reports/arm_watchdog.log 2>&1
+# Add to root crontab: */30 * * * * /home/<YOUR_USER>/scripts/arm_watchdog.sh >> /home/<YOUR_USER>/reports/arm_watchdog.log 2>&1
 
 # Configuration
 LOG_DIR="/home/arm/logs"

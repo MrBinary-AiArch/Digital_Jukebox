@@ -1,11 +1,11 @@
 #!/bin/bash
-# BorgBackup Script for Digital Jukebox
+# BorgBackup Script for Digital <YOUR_HOSTNAME>
 # Provides deduplicated, versioned backups with encryption.
 
 # --- Configuration ---
 REPOSITORY="/mnt/backup/borg_repo"
-LOG_FILE="/home/mrbinary/projects/Digital_Jukebox/logs/borg_backup.log"
-PASSPHRASE_FILE="/home/mrbinary/.borg_passphrase"
+LOG_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/borg_backup.log"
+PASSPHRASE_FILE="/home/<YOUR_USER>/.borg_passphrase"
 
 # Source the passphrase
 if [ -f "$PASSPHRASE_FILE" ]; then
@@ -32,10 +32,10 @@ SNAPSHOT_NAME="$(hostname)-$(date '+%Y-%m-%d-%H%M%S')"
 borg create --stats --show-rc --compression lz4 \
     "$REPOSITORY::$SNAPSHOT_NAME" \
     /mnt/storage \
-    /home/mrbinary/docker \
-    /home/mrbinary/arm_db \
-    /home/mrbinary/scripts \
-    /home/mrbinary/projects \
+    /home/<YOUR_USER>/docker \
+    /home/<YOUR_USER>/arm_db \
+    /home/<YOUR_USER>/scripts \
+    /home/<YOUR_USER>/projects \
     --exclude '/mnt/storage/lost+found' \
     >> "$LOG_FILE" 2>&1
 

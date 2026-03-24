@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Digital Jukebox Health Check Script
+# Digital <YOUR_HOSTNAME> Health Check Script
 # Version 1.3 (Centralized Logging Update)
 
-LOG_FILE="/home/mrbinary/projects/Digital_Jukebox/logs/health_check.log"
+LOG_FILE="/home/<YOUR_USER>/projects/Digital_<YOUR_HOSTNAME>/logs/health_check.log"
 
 {
 echo "=========================================="
-echo "   Digital Jukebox System Health Check    "
+echo "   Digital <YOUR_HOSTNAME> System Health Check    "
 echo "=========================================="
 date
 echo ""
